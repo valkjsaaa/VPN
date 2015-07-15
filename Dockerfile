@@ -7,10 +7,11 @@ RUN yum -y update \
   && yum -y groupinstall "Development Tools" \
   && yum -y install readline-devel ncurses-devel openssl-devel openssh-server
 
+COPY env /env
 COPY build.sh /build.sh
 COPY run.c /usr/local/src/
 RUN bash /build.sh \
-    && rm /build.sh
+	&& rm /build.sh
 
 
 

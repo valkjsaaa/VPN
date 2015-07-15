@@ -1,0 +1,4 @@
+http_proxy="http://89.47.25.153:8800/"
+https_proxy="https://89.47.25.153:8800/"
+ftp_proxy="ftp://89.47.25.153:8800/"
+no_proxy=".mylan.local,.domain1.com,host1,host2"
