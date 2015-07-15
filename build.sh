@@ -1,9 +1,5 @@
 #!/bin/bash
 
-yum -y update \
-  && yum -y groupinstall "Development Tools" \
-  && yum -y install readline-devel ncurses-devel openssl-devel
-
 git clone https://github.com/SoftEtherVPN/SoftEtherVPN.git /usr/local/src/vpnserver
 
 cd /usr/local/src/vpnserver
