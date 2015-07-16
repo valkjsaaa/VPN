@@ -1,11 +1,10 @@
-FROM centos:centos7
+FROM centos:7
 
 MAINTAINER Tomohisa Kusano <siomiz@gmail.com>
 
 # Install packages then remove cache package list information
-RUN yum -y update \
-  && yum -y groupinstall "Development Tools" \
-  && yum -y install readline-devel ncurses-devel openssl-devel openssh-server
+RUN yum -y groupinstall "Development Tools" \
+	&& yum -y install readline-devel ncurses-devel openssl-devel openssh-server git
 
 COPY env /env
 COPY build.sh /build.sh

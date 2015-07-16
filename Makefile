@@ -29,9 +29,9 @@ build:
 push:
 	@echo "note: If the repository is set as an automated build you will NOT be able to push"
 	#docker push $(IMAGE_NAME):$(VERSION)
-	tutum login
-	#docker tag $(IMAGE_NAME):$(VERSION) tutum.co/html/vpn:$(VERSION)
-	#docker tag $(IMAGE_NAME):$(VERSION) tutum.co/html/vpn:latest
+	docker login tutum.co
+	docker tag $(IMAGE_NAME):$(VERSION) tutum.co/html/vpn:$(VERSION)
+	docker tag $(IMAGE_NAME):$(VERSION) tutum.co/html/vpn:latest
 	docker push tutum.co/html/vpn:$(VERSION)
 	docker push tutum.co/html/vpn:latest
 
