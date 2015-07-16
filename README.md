@@ -1,8 +1,8 @@
 ##Setup
 
 
-####Please Note
-The Official SoftEther VPN built on CentOS 7. There is a limitation with Docker and the volume devicemapper which [appears to be fixed](https://github.com/docker/docker/issues/6980) in Docker 1.6.2 but after numerous attempts and configuration tweaks the building the image was not successful. I was able to change the Dockerfile to use **Ubuntu** as the underlaying OS. **Success**
+###Please Note
+The Official SoftEther VPN is built using **CentOS 7**. There is a *current* limitation with Docker and building the image, the volume devicemapper which [appears to be fixed](https://github.com/docker/docker/issues/6980) in Docker 1.6.2 but after numerous attempts and configuration tweaks the building the image was not successful. I was able to change the Dockerfile to use **Ubuntu** as the underlaying OS. **Success!**
 
 * L2TP/IPSec PSK
 * SecureNAT enabled
