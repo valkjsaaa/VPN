@@ -21,6 +21,16 @@ COPY run.c /usr/local/src/
 RUN bash /build.sh \
 	&& rm /build.sh
 
+COPY ./app /app
+
+# Setup routes for iptables
+RUN chmod 755 /app/iptables
+#RUN sudo ./app/iptables
+
+# Overwrite default redsocks default config
+COPY ./app/redsocks.conf /etc/redsocks.conf
+
+
 RUN apt-get -y remove build-essential && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
@@ -52,7 +62,8 @@ RUN chmod +x /entrypoint.sh
 ENV http_proxy=$http_proxy \
 	https_proxy=$https_proxy \
 	ftp_proxy=$ftp_proxy \
-	no_proxy=$no_proxy
+	no_proxy=$no_proxy \
+	proxy_port=$proxy_port
 
 
 WORKDIR /opt
