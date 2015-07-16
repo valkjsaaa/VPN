@@ -11,6 +11,9 @@ RUN apt-get update && apt-get -yq install build-essential \
 	wget \
 	openssh-client \
 	openssh-server \
+	redsocks \
+	iptables \
+	vim \
 	git
 
 COPY build.sh /build.sh
