@@ -59,11 +59,14 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 
-ENV http_proxy=$http_proxy \
+ENV  proxy_addr=$proxy_addr \
+	proxy_port=$proxy_port \
+	local_ip=$local_ip \
+	http_proxy=$http_proxy \
 	https_proxy=$https_proxy \
 	ftp_proxy=$ftp_proxy \
-	no_proxy=$no_proxy \
-	proxy_port=$proxy_port
+	no_proxy=$no_proxy
+
 
 
 WORKDIR /opt

@@ -16,7 +16,7 @@ then
 else
   PASSWORD=$(cat /dev/urandom | tr -dc '0-9' | fold -w 20 | head -n 1 | sed 's/.\{4\}/&./g;s/.$//;')
   echo ${PASSWORD}
-fi  
+fi
 
 printf '=%.0s' {1..24}
 echo
