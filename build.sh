@@ -17,7 +17,5 @@ gcc -o /usr/local/sbin/run /usr/local/src/run.c
 
 rm /usr/local/src/run.c
 
-# Set Proxy vars
-cat /env >> /etc/environment
 
 exit 0

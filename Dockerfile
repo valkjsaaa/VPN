@@ -13,7 +13,6 @@ RUN apt-get update && apt-get -yq install build-essential \
 	openssh-server \
 	git
 
-COPY env /env
 COPY build.sh /build.sh
 COPY run.c /usr/local/src/
 RUN bash /build.sh \
@@ -43,9 +42,15 @@ RUN sed -i s#/home/htmlgraphic:/bin/false#/home/htmlgraphic:/bin/bash# /etc/pass
 RUN mkdir -p /root/.ssh
 COPY authorized_keys /root/.ssh/authorized_keys
 
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+
+ENV http_proxy=$http_proxy \
+	https_proxy=$https_proxy \
+	ftp_proxy=$ftp_proxy \
+	no_proxy=$no_proxy
+
 
 WORKDIR /opt
 
