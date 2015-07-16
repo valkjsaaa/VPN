@@ -1,10 +1,17 @@
-FROM centos:7
-
-MAINTAINER Tomohisa Kusano <siomiz@gmail.com>
+FROM ubuntu:14.04
+MAINTAINER Jason Gegere <jason@htmlgraphic.com>
 
 # Install packages then remove cache package list information
-RUN yum -y groupinstall "Development Tools" \
-	&& yum -y install readline-devel ncurses-devel openssl-devel openssh-server git
+RUN apt-get update && apt-get -yq install build-essential \
+	libssl-dev \
+	libreadline-dev \
+	libncurses5-dev \
+	gcc \
+	make \
+	wget \
+	openssh-client \
+	openssh-server \
+	git
 
 COPY env /env
 COPY build.sh /build.sh
@@ -12,6 +19,9 @@ COPY run.c /usr/local/src/
 RUN bash /build.sh \
 	&& rm /build.sh
 
+RUN apt-get -y remove build-essential && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
 
 
 # Update OpenSSH config
