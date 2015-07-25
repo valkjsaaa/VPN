@@ -1,0 +1,19 @@
+vpn-l2tp:
+  image: htmlgraphic/vpn
+  ports:
+    - "500:500/udp"
+    - "1701:1701/tcp"
+    - "4500:4500/udp"
+    - "49022:22/tcp"
+  tags:
+    - external-fqdn=379a2afe-html.node.tutum.io
+  target_num_containers: 1
+  privileged: true
+  environment:
+    - proxy_addr=89.47.25.153
+    - proxy_port=8800
+    - local_ip=10.7.0.3
+    - http_proxy=http://89.47.25.153:8800
+    - https_proxy=http://89.47.25.153:8800
+    - ftp_proxy=http://89.47.25.153:8800
+    - no_proxy=localhost,127.0.0.1,localaddress,.localdomain.com
