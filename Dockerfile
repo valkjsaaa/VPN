@@ -14,6 +14,10 @@ RUN apt-get update && apt-get -yq install build-essential \
 	redsocks \
 	iptables \
 	vim \
+	lynx \
+	xinetd \
+	telnetd \
+	traceroute \
 	git
 
 COPY build.sh /build.sh
