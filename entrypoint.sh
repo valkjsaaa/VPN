@@ -69,7 +69,7 @@ fi
 mv /app/redsocks.conf /etc/redsocks.conf
 
 # Setup routes for iptables
-sudo iptables-restore ./app/redirect.rules
+sudo iptables-restore /app/redirect.rules
 
 # update REDSOCKS conf
 sed -i "s/PROXY_HOST/$PROXY_HOST/" /etc/redsocks.conf

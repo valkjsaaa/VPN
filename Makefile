@@ -1,7 +1,7 @@
 # Build a container via the command "make build"
 # By Jason Gegere <jason@htmlgraphic.com>
 
-VERSION 			= 0.4.0
+VERSION 			= 0.5.0
 NAME 				= vpn
 IMAGE_REPO 	= htmlgraphic
 IMAGE_NAME 	= $(IMAGE_REPO)/$(NAME)
@@ -28,7 +28,9 @@ build:
 
 push:
 	@echo "note: If the repository is set as an automated build you will NOT be able to push"
-	docker push $(IMAGE_NAME):$(VERSION)
+	#docker push $(IMAGE_NAME):$(VERSION)
+	docker tag -f $(IMAGE_NAME):$(VERSION) $(IMAGE_REPO)/vpn-l2tp:$(VERSION)
+	docker push $(IMAGE_REPO)/vpn-l2tp:$(VERSION)
 	docker login tutum.co
 	docker tag -f $(IMAGE_NAME):$(VERSION) tutum.co/html/vpn:$(VERSION)
 	docker tag -f $(IMAGE_NAME):$(VERSION) tutum.co/html/vpn:latest
@@ -36,7 +38,7 @@ push:
 	docker push tutum.co/html/vpn:latest
 
 run:
-	docker run -d -p 1723:1723 --privileged --name $(NAME) $(IMAGE_NAME):$(VERSION)
+	docker run -d -p 500:500/udp -p 4500:4500/udp -p 1701:1701/tcp --privileged --name $(NAME) $(IMAGE_NAME):$(VERSION)
 
 start:
 	@echo "Starting $(NAME)..."

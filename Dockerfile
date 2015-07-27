@@ -2,7 +2,9 @@ FROM ubuntu:14.04
 MAINTAINER Jason Gegere <jason@htmlgraphic.com>
 
 # Install packages then remove cache package list information
-RUN apt-get update && apt-get -yq install build-essential \
+RUN locale-gen en_US en_US.UTF-8 \
+	&& apt-get update \
+	&& apt-get -yq install build-essential \
 	libssl-dev \
 	libreadline-dev \
 	libncurses5-dev \
@@ -35,13 +37,13 @@ RUN apt-get -y remove build-essential \
 
 
 # Update OpenSSH config
-RUN mkdir /var/run/sshd
-RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
-RUN sed -i "s/LogLevel INFO/LogLevel VERBOSE/" /etc/ssh/sshd_config
+RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd
+RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config \
+	&& sed -i "s/LogLevel INFO/LogLevel VERBOSE/" /etc/ssh/sshd_config
 
 # Adding additional system user
-RUN adduser --system htmlgraphic
-RUN mkdir -p /home/htmlgraphic/.ssh
+RUN adduser --system htmlgraphic \
+	&& mkdir -p /home/htmlgraphic/.ssh
 
 # Clearing and setting authorized ssh keys
 COPY authorized_keys /home/htmlgraphic/.ssh/authorized_keys
