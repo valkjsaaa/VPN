@@ -10,10 +10,7 @@ vpn-l2tp:
   target_num_containers: 1
   privileged: true
   environment:
-    - proxy_addr=89.47.25.153
-    - proxy_port=8800
-    - local_ip=10.7.0.3
-    - http_proxy=http://89.47.25.153:8800
-    - https_proxy=http://89.47.25.153:8800
-    - ftp_proxy=http://89.47.25.153:8800
-    - no_proxy=localhost,127.0.0.1,localaddress,.localdomain.com
+    - PROXY_HOST=
+    - PROXY_PORT=
+    - LOCAL_IP=
+    - NO_PROXY=localhost,127.0.0.1,localaddress,.localdomain.com

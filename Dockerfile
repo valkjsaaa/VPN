@@ -15,29 +15,23 @@ RUN apt-get update && apt-get -yq install build-essential \
 	iptables \
 	vim \
 	lynx \
-	xinetd \
-	telnetd \
 	traceroute \
+	iptables-persistent \
 	git
+
 
 COPY build.sh /build.sh
 COPY run.c /usr/local/src/
 RUN bash /build.sh \
 	&& rm /build.sh
 
-COPY ./app /app
+COPY app /app
+RUN chmod 755 -R /app
 
-# Setup routes for iptables
-RUN chmod 755 /app/iptables
-#RUN sudo ./app/iptables
-
-# Overwrite default redsocks default config
-COPY ./app/redsocks.conf /etc/redsocks.conf
-
-
-RUN apt-get -y remove build-essential && \
-	apt-get clean && \
-	rm -rf /var/lib/apt/lists/*
+RUN apt-get -y remove build-essential \
+	&& apt-get clean \
+	&& apt-get -y autoremove \
+	&& rm -rf /var/lib/apt/lists/*
 
 
 # Update OpenSSH config
@@ -63,13 +57,10 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 
-ENV  proxy_addr=$proxy_addr \
-	proxy_port=$proxy_port \
-	local_ip=$local_ip \
-	http_proxy=$http_proxy \
-	https_proxy=$https_proxy \
-	ftp_proxy=$ftp_proxy \
-	no_proxy=$no_proxy
+ENV PROXY_HOST=$PROXY_HOST \
+	PROXY_PORT=$PROXY_PORT \
+	LOCAL_IP=$LOCAL_IP \
+	no_proxy=$NO_PROXY
 
 
 

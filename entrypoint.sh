@@ -64,5 +64,19 @@ echo [initial setup OK]
 
 fi
 
+
+# Overwrite default redsocks default config
+mv /app/redsocks.conf /etc/redsocks.conf
+
+# Setup routes for iptables
+sudo iptables-restore ./app/redirect.rules
+
+# update REDSOCKS conf
+sed -i "s/PROXY_HOST/$PROXY_HOST/" /etc/redsocks.conf
+sed -i "s/PROXY_PORT/$PROXY_PORT/" /etc/redsocks.conf
+
+# start
+/etc/init.d/redsocks start 2>&1 > /dev/null
+
 exec "$@"
 
