@@ -4,7 +4,7 @@ vpn-l2tp:
     - "500:500/udp"
     - "1701:1701/tcp"
     - "4500:4500/udp"
-    - "49022:22/tcp"
+    - "2222:22/tcp"
   tags:
     - external-fqdn=379a2afe-html.node.tutum.io
   target_num_containers: 1
@@ -13,4 +13,4 @@ vpn-l2tp:
     - PROXY_HOST=
     - PROXY_PORT=
     - LOCAL_IP=
-    - NO_PROXY=localhost,127.0.0.1,localaddress,.localdomain.com
+    - no_proxy=localhost,127.0.0.1,localaddress,.localdomain.com
