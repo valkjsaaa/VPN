@@ -12,7 +12,6 @@ RUN locale-gen en_US en_US.UTF-8 \
 	make \
 	wget \
 	openssh-client \
-	openssh-server \
 	redsocks \
 	iptables \
 	vim \
@@ -36,25 +35,6 @@ RUN apt-get -y remove build-essential \
 	&& rm -rf /var/lib/apt/lists/*
 
 
-# Update OpenSSH config
-RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd
-RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config \
-	&& sed -i "s/LogLevel INFO/LogLevel VERBOSE/" /etc/ssh/sshd_config
-
-# Adding additional system user
-RUN adduser --system htmlgraphic \
-	&& mkdir -p /home/htmlgraphic/.ssh
-
-# Clearing and setting authorized ssh keys
-COPY authorized_keys /home/htmlgraphic/.ssh/authorized_keys
-
-# Updating shell to bash
-RUN sed -i s#/home/htmlgraphic:/bin/false#/home/htmlgraphic:/bin/bash# /etc/passwd
-
-# Updatng root user public key
-RUN mkdir -p /root/.ssh
-COPY authorized_keys /root/.ssh/authorized_keys
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
@@ -71,6 +51,6 @@ WORKDIR /opt
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Note that EXPOSE only works for inter-container links. It doesn't make ports accessible from the host. To expose port(s) to the host, at runtime, use the -p flag.
-EXPOSE 500/udp 4500/udp 1701/tcp 22
+EXPOSE 500/udp 4500/udp 1701/tcp
 
 CMD ["/usr/local/sbin/run"]
