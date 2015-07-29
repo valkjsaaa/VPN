@@ -3,6 +3,13 @@
 
 ##Overview
 ---
+This repo produces a turn key VPN -> SOCKS5 tunnel to route you to the Internet. There could be many reasons why you might need a solution like this. Limitations of your current network restricting access, more security when traveling. Whatever the reason this build gives you a great turn key solution.
+
+There are currently two builds to select:
+
+	*	Version 0.4.0 is ONLY the VPN
+	* 	Version 0.5.0 provides the VPN and ability to remote traffic to a remote proxy
+
 
 
 ###Please Note:
