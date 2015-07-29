@@ -1,10 +1,20 @@
-##Setup
+
+[![Build Status](https://api.shippable.com/projects/55b129faedd7f2c0528139bc/badge?branchName=master)](https://app.shippable.com/projects/55b129faedd7f2c0528139bc/builds/latest)
+
+##Overview
+---
 
 
-###Please Note
+###Please Note:
 The Official SoftEther VPN is built using **CentOS 7** this is a working build using **Ubuntu**. There is a *current* limitation with Docker and building the image via automated tools, the volume devicemapper which [appears to be fixed](https://github.com/docker/docker/issues/6980) in Docker 1.6.2. After numerous attempts and configuration tweaks the building the image was not successful. I was able to change the Dockerfile to use **Ubuntu** as the underlaying OS. **Success!**
 
+
+
+
 ## Version 0.5.0 (VPN -> SOCKS5)
+
+[![](https://badge.imagelayers.io/htmlgraphic/vpn:0.5.0.svg)](https://imagelayers.io/?images=htmlgraphic/vpn:0.5.0 'Get your own badge on imagelayers.io')
+
 * L2TP/IPSec PSK
 * SecureNAT enabled
 * Perfect Forward Secrecy (DHE-RSA-AES256-SHA)
@@ -18,6 +28,7 @@ docker run -d -p 500:500/udp -p 4500:4500/udp -p 1701:1701/tcp -e PROXY_HOST=123
 
 
 ## Version 0.4.0 (VPN)
+[![](https://badge.imagelayers.io/htmlgraphic/vpn:0.4.0.svg)](https://imagelayers.io/?images=htmlgraphic/vpn:0.4.0 'Get your own badge on imagelayers.io')
 
 * L2TP/IPSec PSK
 * SecureNAT enabled
