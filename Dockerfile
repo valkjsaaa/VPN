@@ -16,7 +16,6 @@ RUN locale-gen en_US en_US.UTF-8 \
 	iptables \
 	vim \
 	lynx \
-	traceroute \
 	iptables-persistent \
 	git
 
